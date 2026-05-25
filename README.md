@@ -72,7 +72,7 @@ streamlit run app.py
 ├── app.py                    # Streamlit entry point
 ├── data/
 │   ├── generate_dataset.py   # Dataset builder (DiffusionDB + augmentation)
-│   └── imageart.db           # Generated SQLite database (.gitignore)
+│   └── imageart.db           # Generated SQLite database
 ├── pages/
 │   ├── ab_test.py
 │   ├── category_ratings.py
@@ -82,9 +82,8 @@ streamlit run app.py
 │   └── weekly_trends.py
 ├── utils/
 │   └── loader.py             # Palette, layout, data loading, sidebar filters
-└── requirements.txt
-|
-|__ READEME
+├── requirements.txt
+└── README.md
 ```
 
 ---
