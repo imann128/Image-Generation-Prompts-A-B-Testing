@@ -6,7 +6,7 @@ Product analytics and A/B testing dashboard simulating the internal data at a ge
 
 ## Overview
 
-The dataset is built on 10,000 real prompts from [DiffusionDB](https://huggingface.co/datasets/poloclub/diffusiondb) — actual user inputs to Stable Diffusion — augmented with synthetic columns where `user_rating` is a function of prompt characteristics (length, style keywords, model version, CFG scale) rather than random noise. `generation_time` is modeled from steps, resolution, and sampler speed. This gives the data a causal structure that behaves like real platform telemetry, while the prompt text and metadata come from real user behaviour.
+The dataset is built on 10,000 real prompts from [DiffusionDB](https://huggingface.co/datasets/poloclub/diffusiondb) — actual user inputs to Stable Diffusion and is augmented with synthetic columns where `user_rating` is a function of prompt characteristics (length, style keywords, model version, CFG scale) rather than random noise. `generation_time` is modeled from steps, resolution, and sampler speed. This gives the data a causal structure that behaves like real platform telemetry, while the prompt text and metadata come from real user behaviour.
 
 ---
 
@@ -72,7 +72,7 @@ streamlit run app.py
 ├── app.py                    # Streamlit entry point
 ├── data/
 │   ├── generate_dataset.py   # Dataset builder (DiffusionDB + augmentation)
-│   └── imageart.db           # Generated SQLite database
+│   └── imageart.db           # Generated SQLite database 
 ├── pages/
 │   ├── ab_test.py
 │   ├── category_ratings.py
@@ -82,8 +82,9 @@ streamlit run app.py
 │   └── weekly_trends.py
 ├── utils/
 │   └── loader.py             # Palette, layout, data loading, sidebar filters
-├── requirements.txt
-└── README.md
+└── requirements.txt
+|
+|__ README
 ```
 
 ---
