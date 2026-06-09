@@ -1,10 +1,10 @@
-# ImagineArt Analytics
+# Image Generation Prompts Performance Analytics
 
 Product analytics and A/B testing dashboard simulating the internal data tooling at a generative AI image platform. 
 
 ---
 
-![Overview](images/Overview)
+![Overview](images/Overview.png)
 
 ## In simple words
 
@@ -47,7 +47,7 @@ Each page has a business recommendation tied to a specific product decision not 
 
 ## A/B testing
 
-![A/B-Testing](images/AB-Significance)
+![A/B-Testing](images/AB-Significance.png)
 
 The A/B test page runs a **Mann-Whitney U test** on user rating and generation time simultaneously.
 
@@ -117,7 +117,7 @@ All augmented columns have a causal structure. They are functions of the real me
 
 Gaussian noise (σ = 0.45) is added to every rating so the signal is real but not deterministic. The keyword analysis page surfaces exactly these signals because they were built into the data generation. This is disclosed rather than hidden because methodological transparency is more useful than data that appears magical.
 
-![Prompt-Length](images/Prompt-Length-vs-Output)
+![Prompt-Length](images/Prompt-Length-vs-Output.png)
 
 ---
 
