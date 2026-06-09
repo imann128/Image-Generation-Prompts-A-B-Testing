@@ -1,14 +1,14 @@
 # ImagineArt Analytics
 
-Product analytics and A/B testing dashboard simulating the internal data tooling a data scientist would own at a generative AI image platform — answering the questions a DS hire would be expected to answer on day one.
+Product analytics and A/B testing dashboard simulating the internal data tooling at a generative AI image platform. 
 
 ---
 
-[!Overview](images/Overview)
+![Overview](images/Overview)
 
 ## In simple words
 
-Imagine you work at a company that lets people generate AI images by typing a description — something like "a portrait of a warrior in cinematic lighting." Millions of people use it every day, and the company needs to answer questions like:
+Imagine you work at a company that lets people generate AI images by typing a description, something like "a portrait of a warrior in cinematic lighting." Millions of people use it every day, and the company needs to answer questions like:
 
 - Are users happier with images from the newer AI model or the old one?
 - Why do some users wait 6 seconds for their image when most people get it in 1 second?
@@ -16,7 +16,7 @@ Imagine you work at a company that lets people generate AI images by typing a de
 - Which words in a description tend to make images better or worse?
 - Before we roll out the new model to everyone, is the quality improvement real or just noise?
 
-This dashboard answers those questions visually — the same way an internal analytics team at that company would. You can filter by date, model version, and image style, and every chart updates instantly.
+This dashboard answers those questions visually, in the same way an internal analytics team at that company would. You can filter by date, model version, and image style, and every chart updates instantly.
 
 The data comes from 50,000 real AI image prompts that real people typed, combined with simulated quality scores and timing data that follow the same patterns you'd expect from a real platform.
 
@@ -41,13 +41,13 @@ The dataset is built on 50,000 real prompts from [DiffusionDB](https://huggingfa
 | **Keyword Analysis** | Which style keywords appear in high-rated vs low-rated prompts? | Which terms to surface as one-click suggestions and which to flag as soft warnings |
 | **A/B Test** | Is the observed difference between two variants statistically significant? | Whether a model or feature change is ready to ship to 100% of users |
 
-Each page has a business recommendation tied to a specific product decision — not just a chart for its own sake.
+Each page has a business recommendation tied to a specific product decision not just a chart for its own sake.
 
 ---
 
 ## A/B testing
 
-[!A/B-Testing](images/AB-Significance)
+![A/B-Testing](images/AB-Significance)
 
 The A/B test page runs a **Mann-Whitney U test** on user rating and generation time simultaneously.
 
@@ -64,24 +64,24 @@ Reporting effect size alongside p-value is intentional. A result can be statisti
 
 ### A note on the results
 
-Because the underlying data is synthetic, the A/B test will typically return **no statistically significant difference** between variants — and that is the correct result. The ratings assigned to each model version follow the same noise distribution (σ = 0.45), so there is no real signal to detect. The purpose of this page is not to demonstrate a significant finding but to demonstrate the correct testing methodology: choosing the right test for the data type, reporting effect size alongside p-value, and generating a recommendation that accounts for both statistical significance and practical significance. On real platform data — where model versions produce genuinely different output quality — this same implementation would surface meaningful differences.
+Because the underlying data is synthetic, the A/B test will typically return **no statistically significant difference** between variants and that is the correct result. The ratings assigned to each model version follow the same noise distribution (σ = 0.45), so there is no real signal to detect. The purpose of this page is not to demonstrate a significant finding but to demonstrate the correct testing methodology: choosing the right test for the data type, reporting effect size alongside p-value, and generating a recommendation that accounts for both statistical significance and practical significance. On real platform data, where model versions produce genuinely different output quality, this same implementation would surface meaningful differences.
 
 ---
 
 ## Limitations of synthetic data and what this project demonstrates despite them
 
-This dashboard uses simulated outcome data. User ratings, generation times, session IDs, and timestamps are all synthetically generated. Only the prompt text and model metadata come from real user behaviour (DiffusionDB). This is worth stating clearly because it affects how the results should be read — and because stating it clearly is itself part of what this project is trying to demonstrate.
+This dashboard uses simulated outcome data. User ratings, generation times, session IDs, and timestamps are all synthetically generated. Only the prompt text and model metadata come from real user behaviour (DiffusionDB). This is worth stating clearly because it affects how the results should be read and because stating it clearly is itself part of what this project is trying to demonstrate.
 
 ### What the simulation cannot show
 
 - **The A/B test will return no statistically significant difference between model variants.** The ratings assigned to each model follow the same noise distribution, so there is no real signal to detect. A null result here is correct, not a failure.
 - **The weekly trend is flat.** The OLS slope is approximately 0.0001 per week with R² ≈ 0.002. There is no meaningful time trend because the synthetic ratings have no time component built in.
 - **The keyword analysis bars are nearly uniform.** TF-IDF scores cluster around 0.04 across all terms because the same keyword pool was used to generate all prompts, producing near-equal term frequencies.
-- **The Spearman correlation between prompt length and rating is weakly negative** (ρ ≈ −0.06). This is a known artefact of the generation process — very long prompts get padded with filler words, diluting the quality signal. On real data the relationship would likely be positive up to ~30 words then flatten.
+- **The Spearman correlation between prompt length and rating is weakly negative** (ρ ≈ −0.06). This is a known artefact of the generation process as very long prompts get padded with filler words, diluting the quality signal. On real data the relationship would likely be positive up to ~30 words then flatten.
 
 ### What this project demonstrates regardless
 
-The value of this project as a portfolio piece is not in the findings — it is in the system design and methodological choices. These hold regardless of whether the data is real:
+The value of this project as a portfolio piece is not in the findings. It is in the system design and methodological choices. These hold regardless of whether the data is real:
 
 - **Measurement design.** Every dashboard page is structured around a business question, a statistical method appropriate to that question, and a recommendation tied to a specific decision. This mirrors how a management analytics team would instrument a learning programme — defining what to measure before measuring it, and tying metrics to actions.
 - **Method selection.** The A/B test uses Mann-Whitney U rather than a t-test because ratings are bounded and non-normally distributed. The prompt length analysis uses Spearman ρ rather than Pearson because the relationship is not assumed to be linear. These choices would be identical on real data.
@@ -98,7 +98,7 @@ On real platform data — or real learning programme data — the same infrastru
 50,000 prompts from the `2m_random_50k` split of [DiffusionDB](https://huggingface.co/datasets/poloclub/diffusiondb). Real Stable Diffusion metadata: `model_version`, `sampler`, `steps`, `cfg_scale`, `width`, `height`.
 
 ### Synthetic augmentation
-All augmented columns have a causal structure — they are functions of the real metadata, not random draws.
+All augmented columns have a causal structure. They are functions of the real metadata, not random draws.
 
 | Column | Generation method |
 |---|---|
@@ -115,9 +115,9 @@ All augmented columns have a causal structure — they are functions of the real
 - Steps approaching 30 (diminishing returns past that)
 - CFG scale in the 7–9 range
 
-Gaussian noise (σ = 0.45) is added to every rating so the signal is real but not deterministic. The keyword analysis page surfaces exactly these signals because they were built into the data generation — this is disclosed rather than hidden because methodological transparency is more useful to a reviewer than data that appears magical.
+Gaussian noise (σ = 0.45) is added to every rating so the signal is real but not deterministic. The keyword analysis page surfaces exactly these signals because they were built into the data generation. This is disclosed rather than hidden because methodological transparency is more useful than data that appears magical.
 
-[!Prompt-Length](images/Prompt-Length-vs-Output)
+![Prompt-Length](images/Prompt-Length-vs-Output)
 
 ---
 
